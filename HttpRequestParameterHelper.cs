@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace unirest
+namespace RA.SS.Wrapper
 {
     public static class HttpRequestParameterHelper
     {

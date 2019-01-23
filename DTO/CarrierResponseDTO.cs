@@ -1,4 +1,4 @@
-﻿namespace unirest.DTO
+﻿namespace RA.SS.Wrapper.DTO
 {
     public class CarrierResponseDTO
     {

@@ -6,9 +6,9 @@ using System.Net.Http;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using unirest.DTO;
+using RA.SS.Wrapper.DTO;
 
-namespace unirest
+namespace RA.SS.Wrapper
 {
     /// <summary>
     /// A module designed to retrieve information about airports and to search flights.

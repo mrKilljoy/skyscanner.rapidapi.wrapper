@@ -1,7 +1,7 @@
-using unirest.Enums;
-using unirest.DTO;
+using RA.SS.Wrapper.Enums;
+using RA.SS.Wrapper.DTO;
 
-namespace unirest
+namespace RA.SS.Wrapper
 {
     public static class Constants
     {

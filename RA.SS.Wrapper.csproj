@@ -8,7 +8,6 @@
     <Content Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="newtonsoft.json" Version="12.0.1" />
     <Content Include="Place.cs" />
     <Content Include="FlightApiManager.cs" />
     <Content Include="DTO\UserInfoDTO.cs" />
@@ -18,5 +17,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Responses\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 </Project>

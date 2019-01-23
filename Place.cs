@@ -1,4 +1,4 @@
-namespace unirest
+namespace RA.SS.Wrapper
 {
     public class Place
     {

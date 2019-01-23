@@ -1,7 +1,7 @@
 ﻿using System;
-using unirest.Enums;
+using RA.SS.Wrapper.Enums;
 
-namespace unirest.DTO
+namespace RA.SS.Wrapper.DTO
 {
     public class QueryResponseDTO
     {

@@ -1,4 +1,4 @@
-namespace unirest.Enums
+namespace RA.SS.Wrapper.Enums
 {
     public enum Currency
     {
