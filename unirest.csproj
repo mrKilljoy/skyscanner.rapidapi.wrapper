@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="newtonsoft.json" Version="12.0.1" />
+    <Content Include="Place.cs" />
+    <Content Include="FlightApiManager.cs" />
+    <Content Include="DTO\UserInfoDTO.cs" />
+    <Content Include="DTO\SearchSessionDTO.cs" />
+    <Content Include="Constants.cs" />
+    <Content Include="Enums\Currency.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Responses\" />
+  </ItemGroup>
+</Project>
