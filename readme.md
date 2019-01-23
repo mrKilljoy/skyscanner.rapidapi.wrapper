@@ -1,0 +1,1 @@
+A wrapper for RapidAPI functions, which were designed to show few Skyscanner API methods.
