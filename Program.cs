@@ -8,6 +8,15 @@ namespace RA.SS.Wrapper
     {
         static void Main(string[] args)
         {
+            RunTestCases();
+        }
+
+        private static void RunTestCases()
+        {
+            var places = FlightSearchManager.GetPlaces(Constants.DefaultRussianUserInfo, "moscow")
+                .GetAwaiter()
+                .GetResult();
+
             var sdto = new SearchSessionDTO
             {
                 Country = CountryCode.RU,
@@ -18,8 +27,6 @@ namespace RA.SS.Wrapper
                 Adults = 1,
                 OutboundDate = DateTime.Now.AddDays(3)
             };
-            var x1 = DateTimeOffset.Now.ToString();
-            var x2 = DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:ss");
 
             string key = FlightSearchManager.CreateSearchSessionKey(sdto)
                 .GetAwaiter()
