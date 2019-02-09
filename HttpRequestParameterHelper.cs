@@ -4,7 +4,7 @@ namespace RA.SS.Wrapper
 {
     public static class HttpRequestParameterHelper
     {
-        public static string Handle(object param)
+        public static string Parse(object param)
         {
             string typeName = param.GetType().Name;
 

@@ -21,7 +21,7 @@ namespace RA.SS.Wrapper
             var x1 = DateTimeOffset.Now.ToString();
             var x2 = DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:ss");
 
-            string key = FlightApiManager.CreateSearchSessionKey(sdto);
+            string key = FlightSearchManager.CreateSearchSessionKey(sdto);
 
             var filterDto = new FilterSearchSessionDTO
             {
@@ -31,7 +31,7 @@ namespace RA.SS.Wrapper
                 PageSize = 15
             };
 
-            var searchPoll = FlightApiManager.PollSearchSession(key, filterDto);
+            var searchPoll = FlightSearchManager.PollSearchSession(key, filterDto);
         }
     }
 }

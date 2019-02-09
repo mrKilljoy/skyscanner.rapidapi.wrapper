@@ -12,14 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Place.cs" />
-    <Content Include="FlightApiManager.cs" />
+    <Content Include="FlightSearchManager.cs" />
     <Content Include="DTO\UserInfoDTO.cs" />
     <Content Include="DTO\SearchSessionDTO.cs" />
     <Content Include="Constants.cs" />
     <Content Include="Enums\Currency.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Responses\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />

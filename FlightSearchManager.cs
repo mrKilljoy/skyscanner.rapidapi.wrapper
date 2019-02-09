@@ -14,7 +14,7 @@ namespace RA.SS.Wrapper
     /// A module designed to retrieve information about airports and to search flights.
     /// Hardcoded to work with RapidAPI settings only.
     /// </summary>
-    public static class FlightApiManager
+    public static class FlightSearchManager
     {
         public static string CreateSearchSessionKey(SearchSessionDTO dto)
         {
@@ -62,7 +62,7 @@ namespace RA.SS.Wrapper
                     .Where(p => p.GetValue(dto) != null);
 
                 string requestParameters = string.Join('&', 
-                    propertiesList.Select(p => $"{p.Name}={HttpRequestParameterHelper.Handle(p.GetValue(dto))}"));
+                    propertiesList.Select(p => $"{p.Name}={HttpRequestParameterHelper.Parse(p.GetValue(dto))}"));
 
                 string url = $"{Constants.ApiPricing2String}/{sessionKey}?{requestParameters}";
                 
