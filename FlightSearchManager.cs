@@ -4,9 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RA.SS.Wrapper.DTO;
+using RA.SS.Wrapper.Helpers;
 
 namespace RA.SS.Wrapper
 {
@@ -16,27 +19,25 @@ namespace RA.SS.Wrapper
     /// </summary>
     public static class FlightSearchManager
     {
-        public static string CreateSearchSessionKey(SearchSessionDTO dto)
+        public static async Task<string> CreateSearchSessionKey(SearchSessionDTO dto)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add(Constants.HeaderApiKeyName, Constants.HeaderApiKeyValue);
 
-                var dict = new Dictionary<string, string>
+                var @params = new Dictionary<string, string>
                 {
-                    {"adults", dto.Adults.ToString()},
-                    {"outboundDate", dto.OutboundDate.ToString("yyyy-MM-dd")},
-                    {"originPlace", dto.OriginPlace},
-                    {"destinationPlace", dto.DestinationPlace},
-                    {"currency", dto.Currency.ToString()},
-                    {"locale", dto.Locale},
-                    {"country", dto.Country}
+                    {"adults", dto.Adults.ToString() },
+                    {"outboundDate", dto.OutboundDate.ToString("yyyy-MM-dd") },
+                    {"originPlace", dto.OriginPlace },
+                    {"destinationPlace", dto.DestinationPlace },
+                    {"currency", dto.Currency.ToString() },
+                    {"locale", dto.Locale },
+                    {"country", dto.Country.ToString() }
                 };
 
-                var content = new FormUrlEncodedContent(dict);
-                var response = client.PostAsync(Constants.ApiPricingString, content)
-                    .GetAwaiter()
-                    .GetResult();
+                var content = new FormUrlEncodedContent(@params);
+                var response = await client.PostAsync(Constants.ApiPricingString, content);
 
                 if (response.StatusCode != HttpStatusCode.Created)
                 {
@@ -50,34 +51,23 @@ namespace RA.SS.Wrapper
             }
         }
 
-        public static FilterSearchResponseDTO PollSearchSession(string sessionKey, FilterSearchSessionDTO dto)
+        public static async Task<FilterSearchResponseDTO> PollSearchSession(string sessionKey, FilterSearchSessionDTO dto)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add(Constants.HeaderApiKeyName, Constants.HeaderApiKeyValue);
-
-                var propertiesList = dto
-                    .GetType()
-                    .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.GetValue(dto) != null);
-
-                string requestParameters = string.Join('&', 
-                    propertiesList.Select(p => $"{p.Name}={HttpRequestParameterHelper.Parse(p.GetValue(dto))}"));
-
-                string url = $"{Constants.ApiPricing2String}/{sessionKey}?{requestParameters}";
                 
-                var response = client.GetAsync(url)
-                    .GetAwaiter()
-                    .GetResult();
+                string requestParameters = FilterSearchSessionParametersHelper.BuildUrlParametersList(dto);
+                string url = $"{Constants.ApiPricing2String}/{sessionKey}?{requestParameters}";
 
-                if (response.StatusCode != HttpStatusCode.OK)
+                var response = await client.GetAsync(url);
+
+                if (!response.IsSuccessStatusCode)
                 {
                     throw new HttpRequestException($"request error: '{response.ReasonPhrase}' (code: {response.StatusCode})");
                 }
 
-                string rawResponse = response.Content.ReadAsStringAsync()
-                    .GetAwaiter()
-                    .GetResult();
+                string rawResponse = await response.Content.ReadAsStringAsync();
 
                 var responseDto = JsonConvert.DeserializeObject<FilterSearchResponseDTO>(rawResponse);
 
@@ -85,7 +75,7 @@ namespace RA.SS.Wrapper
             }
         }
 
-        public static IEnumerable<Place> GetPlaces(UserInfoDTO dto, string query)
+        public static async Task<IEnumerable<PlaceResponse>> GetPlaces(UserPreferencesDTO dto, string query)
         {
             using (var client = new HttpClient())
             {
@@ -95,12 +85,10 @@ namespace RA.SS.Wrapper
 
                 client.DefaultRequestHeaders.Add(Constants.HeaderApiKeyName, Constants.HeaderApiKeyValue);
 
-                string response = client.GetStringAsync(url)
-                    .GetAwaiter()
-                    .GetResult();
+                string response = await client.GetStringAsync(url);
                     
                 var coreProperty = JObject.Parse(response);
-                var data = coreProperty.Property("Places").Value.ToObject<IEnumerable<Place>>();
+                var data = coreProperty.Property("Places").Value.ToObject<IEnumerable<PlaceResponse>>();
 
                 return data;
             }

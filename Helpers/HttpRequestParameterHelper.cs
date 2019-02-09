@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RA.SS.Wrapper
+namespace RA.SS.Wrapper.Helpers
 {
     public static class HttpRequestParameterHelper
     {

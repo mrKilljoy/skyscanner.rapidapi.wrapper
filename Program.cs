@@ -10,7 +10,7 @@ namespace RA.SS.Wrapper
         {
             var sdto = new SearchSessionDTO
             {
-                Country = "RU",
+                Country = CountryCode.RU,
                 Currency = Currency.RUB,
                 Locale = Locales.Russian,
                 DestinationPlace = "STOC-sky",
@@ -21,7 +21,9 @@ namespace RA.SS.Wrapper
             var x1 = DateTimeOffset.Now.ToString();
             var x2 = DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:ss");
 
-            string key = FlightSearchManager.CreateSearchSessionKey(sdto);
+            string key = FlightSearchManager.CreateSearchSessionKey(sdto)
+                .GetAwaiter()
+                .GetResult();
 
             var filterDto = new FilterSearchSessionDTO
             {

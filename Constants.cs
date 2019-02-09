@@ -3,9 +3,9 @@ using RA.SS.Wrapper.DTO;
 
 namespace RA.SS.Wrapper
 {
-    public static class Constants
+    internal static class Constants
     {
-        public static UserInfoDTO DefaultRussianUserInfo => new UserInfoDTO
+        public static UserPreferencesDTO DefaultRussianUserInfo => new UserPreferencesDTO
         {
             Currency = Currency.RUB,
             UserCountryAcronym = "RU",
@@ -23,7 +23,7 @@ namespace RA.SS.Wrapper
         public const string HeaderApiKeyValue = "349ca8bc6emsh4668ad52bf8aa79p12d4b3jsnfa31f3222d2b";
     }
 
-    public static class Locales
+    internal static class Locales
     {
         public const string Russian = "ru";
         public const string British = "en-GB";

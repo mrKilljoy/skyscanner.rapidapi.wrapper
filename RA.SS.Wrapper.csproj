@@ -11,9 +11,9 @@
     <Content Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Place.cs" />
+    <Content Include="DTO\PlaceResponse.cs" />
     <Content Include="FlightSearchManager.cs" />
-    <Content Include="DTO\UserInfoDTO.cs" />
+    <Content Include="DTO\UserPreferencesDTO.cs" />
     <Content Include="DTO\SearchSessionDTO.cs" />
     <Content Include="Constants.cs" />
     <Content Include="Enums\Currency.cs" />

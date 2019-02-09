@@ -18,7 +18,7 @@
 
         public AgentResponseDTO[] Agents { get; set; }
 
-        public PlaceResponseDTO[] Places { get; set; }
+        public FoundPlaceResponseDTO[] Places { get; set; }
 
         public CurrencyResponseDTO[] Currencies { get; set; }
     }

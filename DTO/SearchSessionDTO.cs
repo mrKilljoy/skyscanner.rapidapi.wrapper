@@ -5,7 +5,8 @@ namespace RA.SS.Wrapper.DTO
 {
     public class SearchSessionDTO
     {
-        public string Country { get; set; }
+        #region required parameters
+        public CountryCode Country { get; set; }
 
         public Currency Currency { get; set; }
 
@@ -18,5 +19,22 @@ namespace RA.SS.Wrapper.DTO
         public DateTime OutboundDate { get; set; }
 
         public int Adults { get; set; }
+        #endregion
+
+        #region optional parameters
+        public DateTime? InboundDate { get; set; }
+
+        public CabinClass? CabinClass { get; set; }
+
+        public int? Children { get; set; }
+
+        public int? Infants { get; set; }
+
+        public string IncludeCarriers { get; set; }
+
+        public string ExcludeCarriers { get; set; }
+
+        public bool? GroupPricing { get; set; }
+        #endregion
     }
 }

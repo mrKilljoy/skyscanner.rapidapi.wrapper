@@ -1,9 +1,8 @@
-using System;
 using RA.SS.Wrapper.Enums;
 
 namespace RA.SS.Wrapper.DTO
 {
-    public class UserInfoDTO
+    public class UserPreferencesDTO
     {
         public string UserCountryAcronym { get; set; }
 

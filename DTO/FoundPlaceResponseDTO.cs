@@ -1,6 +1,6 @@
 ﻿namespace RA.SS.Wrapper.DTO
 {
-    public class PlaceResponseDTO
+    public class FoundPlaceResponseDTO
     {
         public int Id { get; set; }
 
